@@ -37,10 +37,8 @@ int main(void)
 	std::vector<std::string> mathExpressions = getStringFromFile(pathToFile);
 
 	for (int element = 0; element < mathExpressions.size(); element++) {
-		std::cout << "startttt" << std::endl;
 		try {
 			std::cout << element << std::endl;
-			// std::cout << std::format("Your input: {}!\n", mathExpression);
 			std::string singleExpression = mathExpressions[element];
 			analyzeString(singleExpression);
 		}
