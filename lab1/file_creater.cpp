@@ -5,18 +5,28 @@
 #include <set>
 #include <fstream>
 #include <iostream>
+#include <regex>
 
-void create_file(std::string result, std::set<std::string> usedFuncs) {
-	auto now = std::chrono::system_clock::now();
-	auto timestamp = std::chrono::duration_cast<std::chrono::seconds>(
-		now.time_since_epoch()).count();
+std::string replacePlaceholders(const std::string& str, const std::unordered_map<std::string, std::string>& replacements) {
+    std::string result = str;
+    for (const auto& [key, value] : replacements) {
+        result = std::regex_replace(result, std::regex("\\{" + key + "\\}"), value);
+    }
+    return result;
+}
+
+void create_file(std::string result, std::vector<std::pair<std::string, std::pair<std::string, std::string>>> usedFuncs) {
+    
+    auto now = std::chrono::system_clock::now();
+    auto timestamp = std::chrono::duration_cast<std::chrono::seconds>(
+        now.time_since_epoch()).count();
     std::string fileName = "file_" + std::to_string(timestamp) + ".txt";
     std::filesystem::path currentPath = std::filesystem::current_path();
-	
+
     std::unordered_map<std::string, std::string> funcs = {
     {"doubleAddSub", R"(double addSub(TokenData& tokenData) {
-        double first = mulDiv(tokenData);
-
+        double {first} = mulDiv(tokenData);
+        
         while (tokenData.currentPosition < tokenData.finalExpression.size()) {
             char symb = tokenData.finalExpression[tokenData.currentPosition];
 
@@ -27,16 +37,15 @@ void create_file(std::string result, std::set<std::string> usedFuncs) {
 
             double second = mulDiv(tokenData);
             if (symb == Token::ADD) {
-                first += second;
+                {first} += {second};
             } else {
-                first -= second;
+                {first} -= {second};
             }
         }
-        tokenData.usedFuncs.insert("doubleAddSub");
-        return first;
+        return {first};
     })"},
     {"doubleMulDiv", R"(double mulDiv(TokenData& tokenData) {
-        double first = parseBrackets(tokenData);
+        double {first} = parseBrackets(tokenData);
 
         while (tokenData.currentPosition < tokenData.finalExpression.size()) {
             char symb = tokenData.finalExpression[tokenData.currentPosition];
@@ -46,22 +55,21 @@ void create_file(std::string result, std::set<std::string> usedFuncs) {
             }
             tokenData.currentPosition++;
 
-            double second = parseBrackets(tokenData);
+            double {second} = parseBrackets(tokenData);
             if (symb == Token::MUL) {
-                first *= second;
+                {first} *= {second};
             } else {
                 if (second != 0) {
-                    first /= second;
+                    {first} /= {second};
                 } else {
                     throw std::runtime_error("Error: Division by zero.");
                 }
             }
         }
-        tokenData.usedFuncs.insert("doubleMulDiv");
-        return first;
+        return {first};
     })"},
     {"intAddSub", R"(int addSubInt(TokenData& tokenData) {
-        int first = intMulDiv(tokenData);
+        int {first} = intMulDiv(tokenData);
 
         while (tokenData.currentPosition < tokenData.finalExpression.size()) {
             char symb = tokenData.finalExpression[tokenData.currentPosition];
@@ -73,13 +81,12 @@ void create_file(std::string result, std::set<std::string> usedFuncs) {
 
             int second = intMulDiv(tokenData);
             if (symb == Token::ADD) {
-                first += second;
+                {first} += {second};
             } else {
-                first -= second;
+                {first} -= {second};
             }
         }
-        tokenData.usedFuncs.insert("intAddSub");
-        return first;
+        return {first};
     })"},
     {"intMulDiv", R"(int intMulDiv(TokenData& tokenData) {
         int first = parseBracketsInt(tokenData);
@@ -94,31 +101,35 @@ void create_file(std::string result, std::set<std::string> usedFuncs) {
 
             int second = parseBracketsInt(tokenData); // исправлено на int
             if (symb == Token::MUL) {
-                first *= second;
+                {first} *= {second};
             } else {
                 if (second != 0) {
-                    first /= second;
+                    {first} /= {second};
                 } else {
                     throw std::runtime_error("Error: Division by zero.");
                 }
             }
         }
-        tokenData.usedFuncs.insert("intMulDiv");
-        return first;
+        return {first};
     })"}
     };
 
     std::ofstream fileOutput;
     fileOutput.open(fileName);
-    std::cout << fileName << std::endl;
     if (fileOutput.is_open()) {
         fileOutput << result;
         fileOutput << '\n';
 
-        for (const std::string& element : usedFuncs) {
-            fileOutput << funcs[element];
+        for (const auto& usedFunc : usedFuncs) {
+            std::string gotFunc = funcs[usedFunc.first];
+            std::unordered_map<std::string, std::string> firstMap = { {"first", usedFunc.second.first} };
+            std::unordered_map<std::string, std::string> secondMap = { {"second", usedFunc.second.second} };
+
+            std::string temp = replacePlaceholders(gotFunc, firstMap);
+            std::string finalFunc = replacePlaceholders(temp, secondMap);
+            fileOutput << finalFunc;
             fileOutput << '\n';
         }
-        fileOutput.close();
+     fileOutput.close();
     }
 }

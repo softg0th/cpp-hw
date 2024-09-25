@@ -35,7 +35,7 @@ bool isValidExpr(const std::string& mathExpr) {
 struct TokenData {
     int currentPosition;
     std::string finalExpression;
-    std::set<std::string> usedFuncs;
+    std::vector<std::pair<std::string, std::pair<std::string, std::string>>> usedFuncs;
 };
 
 double addSub(TokenData& tokenData);
@@ -49,6 +49,7 @@ int parseNumberInt(TokenData& tokenData);
 
 double addSub(TokenData& tokenData) {
     double first = mulDiv(tokenData);
+    double second;
 
     while (tokenData.currentPosition < tokenData.finalExpression.size()) {
         char symb = tokenData.finalExpression[tokenData.currentPosition];
@@ -58,7 +59,8 @@ double addSub(TokenData& tokenData) {
         }
         tokenData.currentPosition++;
 
-        double second = mulDiv(tokenData);
+        second = mulDiv(tokenData);
+        tokenData.usedFuncs.push_back({ "doubleAddSub", {std::to_string(first), std::to_string(second)} });
         if (symb == Token::ADD) {
             first += second;
         }
@@ -66,12 +68,12 @@ double addSub(TokenData& tokenData) {
             first -= second;
         }
     }
-    tokenData.usedFuncs.insert("doubleAddSub");
     return first;
 }
 
 double mulDiv(TokenData& tokenData) {
     double first = parseBrackets(tokenData);
+    double second;
 
     while (tokenData.currentPosition < tokenData.finalExpression.size()) {
         char symb = tokenData.finalExpression[tokenData.currentPosition];
@@ -81,7 +83,8 @@ double mulDiv(TokenData& tokenData) {
         }
         tokenData.currentPosition++;
 
-        double second = parseBrackets(tokenData);
+        second = parseBrackets(tokenData);
+        tokenData.usedFuncs.push_back({ "doubleMulDiv", {std::to_string(first), std::to_string(second)} });
         if (symb == Token::MUL) {
             first *= second;
         }
@@ -94,7 +97,7 @@ double mulDiv(TokenData& tokenData) {
             }
         }
     }
-    tokenData.usedFuncs.insert("doubleMulDiv");
+    
     return first;
 }
 
@@ -131,6 +134,7 @@ double parseNumber(TokenData& tokenData) {
 
 int addSubInt(TokenData& tokenData) {
     int first = intMulDiv(tokenData);
+    int second;
 
     while (tokenData.currentPosition < tokenData.finalExpression.size()) {
         char symb = tokenData.finalExpression[tokenData.currentPosition];
@@ -140,7 +144,8 @@ int addSubInt(TokenData& tokenData) {
         }
         tokenData.currentPosition++;
 
-        int second = mulDiv(tokenData);
+        second = intMulDiv(tokenData);
+        tokenData.usedFuncs.push_back({ "intAddSub", {std::to_string(first), std::to_string(second)} });
         if (symb == Token::ADD) {
             first += second;
         }
@@ -148,12 +153,12 @@ int addSubInt(TokenData& tokenData) {
             first -= second;
         }
     }
-    tokenData.usedFuncs.insert("intAddSub");
     return first;
 }
 
 int intMulDiv(TokenData& tokenData) {
     int first = parseBracketsInt(tokenData);
+    int second;
 
     while (tokenData.currentPosition < tokenData.finalExpression.size()) {
         char symb = tokenData.finalExpression[tokenData.currentPosition];
@@ -163,7 +168,8 @@ int intMulDiv(TokenData& tokenData) {
         }
         tokenData.currentPosition++;
 
-        int second = parseBrackets(tokenData);
+        second = parseBrackets(tokenData);
+        tokenData.usedFuncs.push_back({ "intMulDiv", {std::to_string(first), std::to_string(second)} });
         if (symb == Token::MUL) {
             first *= second;
         } else {
@@ -174,7 +180,6 @@ int intMulDiv(TokenData& tokenData) {
             }
         }
     }
-    tokenData.usedFuncs.insert("intMulDiv");
     return first;
 }
 
