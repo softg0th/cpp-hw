@@ -8,4 +8,4 @@ struct OutputValues {
 };
 */
 
-void analyzeString(const std::string& inputExpression);
+void analyzeString(const std::string& inputExpression, char typeInput);

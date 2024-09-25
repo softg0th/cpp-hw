@@ -8,6 +8,7 @@
 #include <stdexcept>
 #include <vector>
 #include "lex_analyzer.hpp"
+#include "CMakeProject1.h"
 #pragma warning(disable:4996)
 
 
@@ -17,7 +18,6 @@ std::vector<std::string> getStringFromFile(const std::string& fileName) {
 	std::fstream expressionFile(fileName);
 
 	if (!expressionFile.is_open()) {
-		// throw std::runtime_error(std::format("Error: {} doesn't exist!", fileName));
 		throw std::runtime_error("err");
 	}
 
@@ -31,16 +31,24 @@ std::vector<std::string> getStringFromFile(const std::string& fileName) {
 int main(void)
 {
 	std::string pathToFile, mathExpression;
+	char typeInput;
 
-	std::cout << "Input path:" << std::endl; 
+	std::cout << "Input type: 1. double, 2. int" << std::endl;
+	std::cin >> typeInput;
+
+	if (typeInput != '1' && typeInput != '2') {
+		throw std::runtime_error("err");
+	}
+
+	std::cout << "Input path:" << std::endl;
 	std::cin >> pathToFile;
+
 	std::vector<std::string> mathExpressions = getStringFromFile(pathToFile);
 
 	for (int element = 0; element < mathExpressions.size(); element++) {
 		try {
-			std::cout << element << std::endl;
 			std::string singleExpression = mathExpressions[element];
-			analyzeString(singleExpression);
+			analyzeString(singleExpression, typeInput);
 		}
 		catch (const std::runtime_error& e) {
 			std::cerr << e.what() << std::endl;
