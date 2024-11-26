@@ -1,0 +1,3 @@
+D:/code/sppo/cpp/Lab2/build/CMakeFiles/lab.dir
+D:/code/sppo/cpp/Lab2/build/CMakeFiles/edit_cache.dir
+D:/code/sppo/cpp/Lab2/build/CMakeFiles/rebuild_cache.dir
