@@ -82,19 +82,67 @@ CMakeFiles/lab.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/lab.dir/main.cpp.s"
 	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\code\sppo\cpp\Lab2\main.cpp -o CMakeFiles\lab.dir\main.cpp.s
 
+CMakeFiles/lab.dir/lib/NumberManipulator.cpp.obj: CMakeFiles/lab.dir/flags.make
+CMakeFiles/lab.dir/lib/NumberManipulator.cpp.obj: D:/code/sppo/cpp/Lab2/lib/NumberManipulator.cpp
+CMakeFiles/lab.dir/lib/NumberManipulator.cpp.obj: CMakeFiles/lab.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\code\sppo\cpp\Lab2\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/lab.dir/lib/NumberManipulator.cpp.obj"
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/lab.dir/lib/NumberManipulator.cpp.obj -MF CMakeFiles\lab.dir\lib\NumberManipulator.cpp.obj.d -o CMakeFiles\lab.dir\lib\NumberManipulator.cpp.obj -c D:\code\sppo\cpp\Lab2\lib\NumberManipulator.cpp
+
+CMakeFiles/lab.dir/lib/NumberManipulator.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/lab.dir/lib/NumberManipulator.cpp.i"
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\code\sppo\cpp\Lab2\lib\NumberManipulator.cpp > CMakeFiles\lab.dir\lib\NumberManipulator.cpp.i
+
+CMakeFiles/lab.dir/lib/NumberManipulator.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/lab.dir/lib/NumberManipulator.cpp.s"
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\code\sppo\cpp\Lab2\lib\NumberManipulator.cpp -o CMakeFiles\lab.dir\lib\NumberManipulator.cpp.s
+
+CMakeFiles/lab.dir/lib/logger.cpp.obj: CMakeFiles/lab.dir/flags.make
+CMakeFiles/lab.dir/lib/logger.cpp.obj: D:/code/sppo/cpp/Lab2/lib/logger.cpp
+CMakeFiles/lab.dir/lib/logger.cpp.obj: CMakeFiles/lab.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\code\sppo\cpp\Lab2\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/lab.dir/lib/logger.cpp.obj"
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/lab.dir/lib/logger.cpp.obj -MF CMakeFiles\lab.dir\lib\logger.cpp.obj.d -o CMakeFiles\lab.dir\lib\logger.cpp.obj -c D:\code\sppo\cpp\Lab2\lib\logger.cpp
+
+CMakeFiles/lab.dir/lib/logger.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/lab.dir/lib/logger.cpp.i"
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\code\sppo\cpp\Lab2\lib\logger.cpp > CMakeFiles\lab.dir\lib\logger.cpp.i
+
+CMakeFiles/lab.dir/lib/logger.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/lab.dir/lib/logger.cpp.s"
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\code\sppo\cpp\Lab2\lib\logger.cpp -o CMakeFiles\lab.dir\lib\logger.cpp.s
+
+CMakeFiles/lab.dir/lib/common.cpp.obj: CMakeFiles/lab.dir/flags.make
+CMakeFiles/lab.dir/lib/common.cpp.obj: D:/code/sppo/cpp/Lab2/lib/common.cpp
+CMakeFiles/lab.dir/lib/common.cpp.obj: CMakeFiles/lab.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\code\sppo\cpp\Lab2\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/lab.dir/lib/common.cpp.obj"
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/lab.dir/lib/common.cpp.obj -MF CMakeFiles\lab.dir\lib\common.cpp.obj.d -o CMakeFiles\lab.dir\lib\common.cpp.obj -c D:\code\sppo\cpp\Lab2\lib\common.cpp
+
+CMakeFiles/lab.dir/lib/common.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/lab.dir/lib/common.cpp.i"
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\code\sppo\cpp\Lab2\lib\common.cpp > CMakeFiles\lab.dir\lib\common.cpp.i
+
+CMakeFiles/lab.dir/lib/common.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/lab.dir/lib/common.cpp.s"
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\code\sppo\cpp\Lab2\lib\common.cpp -o CMakeFiles\lab.dir\lib\common.cpp.s
+
 # Object files for target lab
 lab_OBJECTS = \
-"CMakeFiles/lab.dir/main.cpp.obj"
+"CMakeFiles/lab.dir/main.cpp.obj" \
+"CMakeFiles/lab.dir/lib/NumberManipulator.cpp.obj" \
+"CMakeFiles/lab.dir/lib/logger.cpp.obj" \
+"CMakeFiles/lab.dir/lib/common.cpp.obj"
 
 # External object files for target lab
 lab_EXTERNAL_OBJECTS =
 
 lab.exe: CMakeFiles/lab.dir/main.cpp.obj
+lab.exe: CMakeFiles/lab.dir/lib/NumberManipulator.cpp.obj
+lab.exe: CMakeFiles/lab.dir/lib/logger.cpp.obj
+lab.exe: CMakeFiles/lab.dir/lib/common.cpp.obj
 lab.exe: CMakeFiles/lab.dir/build.make
 lab.exe: CMakeFiles/lab.dir/linkLibs.rsp
 lab.exe: CMakeFiles/lab.dir/objects1.rsp
 lab.exe: CMakeFiles/lab.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=D:\code\sppo\cpp\Lab2\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable lab.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=D:\code\sppo\cpp\Lab2\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable lab.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\lab.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

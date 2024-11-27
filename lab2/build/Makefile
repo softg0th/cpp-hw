@@ -128,6 +128,78 @@ lab/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\lab.dir\build.make CMakeFiles/lab.dir/build
 .PHONY : lab/fast
 
+lib/NumberManipulator.obj: lib/NumberManipulator.cpp.obj
+.PHONY : lib/NumberManipulator.obj
+
+# target to build an object file
+lib/NumberManipulator.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\lab.dir\build.make CMakeFiles/lab.dir/lib/NumberManipulator.cpp.obj
+.PHONY : lib/NumberManipulator.cpp.obj
+
+lib/NumberManipulator.i: lib/NumberManipulator.cpp.i
+.PHONY : lib/NumberManipulator.i
+
+# target to preprocess a source file
+lib/NumberManipulator.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\lab.dir\build.make CMakeFiles/lab.dir/lib/NumberManipulator.cpp.i
+.PHONY : lib/NumberManipulator.cpp.i
+
+lib/NumberManipulator.s: lib/NumberManipulator.cpp.s
+.PHONY : lib/NumberManipulator.s
+
+# target to generate assembly for a file
+lib/NumberManipulator.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\lab.dir\build.make CMakeFiles/lab.dir/lib/NumberManipulator.cpp.s
+.PHONY : lib/NumberManipulator.cpp.s
+
+lib/common.obj: lib/common.cpp.obj
+.PHONY : lib/common.obj
+
+# target to build an object file
+lib/common.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\lab.dir\build.make CMakeFiles/lab.dir/lib/common.cpp.obj
+.PHONY : lib/common.cpp.obj
+
+lib/common.i: lib/common.cpp.i
+.PHONY : lib/common.i
+
+# target to preprocess a source file
+lib/common.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\lab.dir\build.make CMakeFiles/lab.dir/lib/common.cpp.i
+.PHONY : lib/common.cpp.i
+
+lib/common.s: lib/common.cpp.s
+.PHONY : lib/common.s
+
+# target to generate assembly for a file
+lib/common.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\lab.dir\build.make CMakeFiles/lab.dir/lib/common.cpp.s
+.PHONY : lib/common.cpp.s
+
+lib/logger.obj: lib/logger.cpp.obj
+.PHONY : lib/logger.obj
+
+# target to build an object file
+lib/logger.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\lab.dir\build.make CMakeFiles/lab.dir/lib/logger.cpp.obj
+.PHONY : lib/logger.cpp.obj
+
+lib/logger.i: lib/logger.cpp.i
+.PHONY : lib/logger.i
+
+# target to preprocess a source file
+lib/logger.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\lab.dir\build.make CMakeFiles/lab.dir/lib/logger.cpp.i
+.PHONY : lib/logger.cpp.i
+
+lib/logger.s: lib/logger.cpp.s
+.PHONY : lib/logger.s
+
+# target to generate assembly for a file
+lib/logger.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\lab.dir\build.make CMakeFiles/lab.dir/lib/logger.cpp.s
+.PHONY : lib/logger.cpp.s
+
 main.obj: main.cpp.obj
 .PHONY : main.obj
 
@@ -161,6 +233,15 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... lab
+	@echo ... lib/NumberManipulator.obj
+	@echo ... lib/NumberManipulator.i
+	@echo ... lib/NumberManipulator.s
+	@echo ... lib/common.obj
+	@echo ... lib/common.i
+	@echo ... lib/common.s
+	@echo ... lib/logger.obj
+	@echo ... lib/logger.i
+	@echo ... lib/logger.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s

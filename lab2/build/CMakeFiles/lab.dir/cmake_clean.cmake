@@ -1,4 +1,10 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/lab.dir/lib/NumberManipulator.cpp.obj"
+  "CMakeFiles/lab.dir/lib/NumberManipulator.cpp.obj.d"
+  "CMakeFiles/lab.dir/lib/common.cpp.obj"
+  "CMakeFiles/lab.dir/lib/common.cpp.obj.d"
+  "CMakeFiles/lab.dir/lib/logger.cpp.obj"
+  "CMakeFiles/lab.dir/lib/logger.cpp.obj.d"
   "CMakeFiles/lab.dir/main.cpp.obj"
   "CMakeFiles/lab.dir/main.cpp.obj.d"
   "lab.exe"

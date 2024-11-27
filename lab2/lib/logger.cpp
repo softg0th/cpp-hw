@@ -17,6 +17,12 @@ void logOperations(unsigned int op) {
         case 5:
             std::cout << "Destructor call" << std::endl;
             break;
+        case 6:
+            std::cout << "Assignment copy call" << std::endl;
+            break;
+        case 7:
+            std::cout << "Assignment move call" << std::endl;
+            break;
         default:
             throw std::runtime_error("Unknown operation");
             break;

@@ -8,6 +8,9 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "D:/code/sppo/cpp/Lab2/lib/NumberManipulator.cpp" "CMakeFiles/lab.dir/lib/NumberManipulator.cpp.obj" "gcc" "CMakeFiles/lab.dir/lib/NumberManipulator.cpp.obj.d"
+  "D:/code/sppo/cpp/Lab2/lib/common.cpp" "CMakeFiles/lab.dir/lib/common.cpp.obj" "gcc" "CMakeFiles/lab.dir/lib/common.cpp.obj.d"
+  "D:/code/sppo/cpp/Lab2/lib/logger.cpp" "CMakeFiles/lab.dir/lib/logger.cpp.obj" "gcc" "CMakeFiles/lab.dir/lib/logger.cpp.obj.d"
   "D:/code/sppo/cpp/Lab2/main.cpp" "CMakeFiles/lab.dir/main.cpp.obj" "gcc" "CMakeFiles/lab.dir/main.cpp.obj.d"
   )
 

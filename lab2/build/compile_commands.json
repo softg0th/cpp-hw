@@ -4,5 +4,23 @@
   "command": "C:\\msys64\\ucrt64\\bin\\g++.exe   -g -std=gnu++20 -o CMakeFiles\\lab.dir\\main.cpp.obj -c D:\\code\\sppo\\cpp\\Lab2\\main.cpp",
   "file": "D:/code/sppo/cpp/Lab2/main.cpp",
   "output": "CMakeFiles/lab.dir/main.cpp.obj"
+},
+{
+  "directory": "D:/code/sppo/cpp/Lab2/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe   -g -std=gnu++20 -o CMakeFiles\\lab.dir\\lib\\NumberManipulator.cpp.obj -c D:\\code\\sppo\\cpp\\Lab2\\lib\\NumberManipulator.cpp",
+  "file": "D:/code/sppo/cpp/Lab2/lib/NumberManipulator.cpp",
+  "output": "CMakeFiles/lab.dir/lib/NumberManipulator.cpp.obj"
+},
+{
+  "directory": "D:/code/sppo/cpp/Lab2/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe   -g -std=gnu++20 -o CMakeFiles\\lab.dir\\lib\\logger.cpp.obj -c D:\\code\\sppo\\cpp\\Lab2\\lib\\logger.cpp",
+  "file": "D:/code/sppo/cpp/Lab2/lib/logger.cpp",
+  "output": "CMakeFiles/lab.dir/lib/logger.cpp.obj"
+},
+{
+  "directory": "D:/code/sppo/cpp/Lab2/build",
+  "command": "C:\\msys64\\ucrt64\\bin\\g++.exe   -g -std=gnu++20 -o CMakeFiles\\lab.dir\\lib\\common.cpp.obj -c D:\\code\\sppo\\cpp\\Lab2\\lib\\common.cpp",
+  "file": "D:/code/sppo/cpp/Lab2/lib/common.cpp",
+  "output": "CMakeFiles/lab.dir/lib/common.cpp.obj"
 }
 ]
