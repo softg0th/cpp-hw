@@ -1,0 +1,1 @@
+void logOperations(unsigned int op);

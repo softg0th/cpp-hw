@@ -1,0 +1,14 @@
+{
+    "version": 1,
+    "revision": 0,
+    "rules": [
+        {
+            "primary-output": "lab.dir\\Debug\\logger.obj",
+            "outputs": [
+                "D:\\code\\sppo\\cpp\\Lab3\\build\\lab.dir\\Debug\\vc143.pdb",
+                "lab.dir\\Debug\\"
+            ],
+            "requires": []
+        }
+    ]
+}
