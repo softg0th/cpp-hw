@@ -5,7 +5,6 @@
 
 class NumberManipulator {
     private:
-        int number;
         std::vector<std::map<std::string, std::string>> history;
         std::string numToString;
 
@@ -18,6 +17,8 @@ class NumberManipulator {
             this->history.push_back(historyLine);
         }
     public:
+        int number;
+        bool moved;
         NumberManipulator();
         NumberManipulator(int number, const std::string& numToString);
         NumberManipulator(const NumberManipulator &nm);
@@ -28,6 +29,7 @@ class NumberManipulator {
 
         ~NumberManipulator();
 
+        bool isMoved() const;
         void getHistory() const;
         std::vector<std::map<std::string, std::string>> getValueHistory();
 };

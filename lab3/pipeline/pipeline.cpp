@@ -1,179 +1,216 @@
 #include <iostream>
-
-#include <algorithm>
-#include <numeric>
-#include <utility>
 #include <vector>
 #include <list>
-#include <iterator>
-#include <cstdlib>
+#include <algorithm>
 
 #include "../lib/NumberManipulator.hpp"
 
-NumberManipulator createRandomObject() {
-    auto obj =  NumberManipulator{std::rand(), "new"};
-    return obj;
-}
-
-template <typename T>
-std::vector<T> buildInitialVector(int vecSize) {
-    std::vector<T> resultVector;
+std::vector<NumberManipulator> buildInitialVector(int vecSize) {
+    std::vector<NumberManipulator> resultVector;
+    resultVector.reserve(vecSize);
     for (int i = 0; i < vecSize; i++) {
-        resultVector.push_back(T(std::rand(), "new"));
+        resultVector.emplace_back(std::rand(), "new");
     }
     return resultVector;
 }
 
-template <typename T>
-std::vector<T> buildSliceVector(const std::vector<T>& initialVector, int startOffset, int endOffset) {
-    auto start = initialVector.begin() + startOffset;
-    auto end = (endOffset < static_cast<int>(initialVector.size())) ? initialVector.begin() + endOffset : initialVector.end();
-    return std::vector<T>(start, end);
+bool compareByBiggestNumber(const NumberManipulator& a, const NumberManipulator& b) {
+    return a.number > b.number;
 }
 
-template <typename T>
-std::list<T> buildLargestList(const std::vector<T>& sliceVector) {
-    auto sortedSlice = sliceVector;
-    std::stable_sort(sortedSlice.begin(), sortedSlice.end(), std::greater<T>());
-
-    auto start = sortedSlice.begin() + 20;
-    auto end = (sortedSlice.size() > 50) ? (sortedSlice.begin() + 50) : sortedSlice.end();
-    return std::list<T>(start, end);
+bool compareBySmallestNumber(const NumberManipulator& a, const NumberManipulator& b) {
+    return a.number < b.number;
 }
 
-template <typename T>
-std::list<T> buildSmallestList(const std::vector<T>& sliceVector) {
-    auto sortedSlice = sliceVector;
-    std::stable_sort(sortedSlice.begin(), sortedSlice.end());
+std::vector<NumberManipulator> sliceInitialVector(std::vector<NumberManipulator> inputVector) {
+    int vecEnd = inputVector.size();
+    std::vector<NumberManipulator> slicedVector;
 
-    auto start = (sortedSlice.size() > 20) ? (sortedSlice.end() - 20) : sortedSlice.begin();
-    auto end = (sortedSlice.size() > 50) ? (sortedSlice.end() - 50) : sortedSlice.end();
-    return std::list<T>(start, end);
+    if (vecEnd < 200) {
+        auto start = inputVector.begin();
+        auto end = inputVector.begin() + vecEnd;
+        slicedVector = std::vector<NumberManipulator>(start, end);
+    } else {
+        auto start = inputVector.begin() + 200;
+        auto end = inputVector.begin() + vecEnd;
+        slicedVector = std::vector<NumberManipulator>(start, end);
+    }
+
+    return slicedVector;
 }
 
-template <typename T>
-void removeMovedElements(std::vector<T>& vec) {
-    vec.erase(std::remove_if(vec.begin(), vec.end(),
-                             [](const T& elem) { return elem.name == "new"; }),
-              vec.end());
+std::list<NumberManipulator> buildLargestList(std::vector<NumberManipulator> inputVector) {
+    std::vector<NumberManipulator> slicedVector;
+    std::sort(inputVector.begin(), inputVector.end(), compareByBiggestNumber);
+    int vecEnd = inputVector.size();
+
+    if (vecEnd < 20 || vecEnd < 50) {
+        auto start = inputVector.begin();
+        auto end = inputVector.begin() + vecEnd;
+        slicedVector = std::vector<NumberManipulator>(start, end);
+    } else {
+        auto start = inputVector.begin() + 20;
+        auto end = inputVector.begin() + 50;
+        slicedVector = std::vector<NumberManipulator>(start, end);
+    }
+
+    return std::list<NumberManipulator>(slicedVector.begin(), slicedVector.end());
 }
 
-template <typename T>
-void sortAverageElement(std::list<T>& inputList) {
-    auto sum = std::accumulate(inputList.begin(), inputList.end(), 0);
-    auto average = sum / inputList.size();
-    inputList.sort([average](const T& a, const T& b) {
-        return std::abs(a.value - average) < std::abs(b.value - average);
+void removeMovedElements(std::vector<NumberManipulator>& inputVector) {
+    inputVector.erase(std::remove_if(inputVector.begin(), inputVector.end(),
+                               [](const NumberManipulator& nm) { return nm.isMoved(); }),
+                inputVector.end());
+}
+
+std::list<NumberManipulator> buildSmallestList(std::vector<NumberManipulator> inputVector) {
+    std::vector<NumberManipulator> slicedVector;
+    std::sort(inputVector.begin(), inputVector.end(), compareBySmallestNumber);
+    int vecEnd = inputVector.size();
+
+    if (vecEnd < 20 || vecEnd < 50) {
+        auto start = inputVector.begin();
+        auto end = inputVector.begin() + vecEnd;
+        slicedVector = std::vector<NumberManipulator>(start, end);
+    } else {
+        auto start = inputVector.begin() + 20;
+        auto end = inputVector.begin() + 50;
+        slicedVector = std::vector<NumberManipulator>(start, end);
+    }
+
+    return std::list<NumberManipulator>(slicedVector.begin(), slicedVector.end());
+}
+
+std::list<NumberManipulator>::iterator sortByAVGList(std::list<NumberManipulator>& inputList) {
+    inputList.sort(compareByBiggestNumber);
+    auto it = inputList.begin();
+    std::advance(it, inputList.size() / 2);
+    return it;
+}
+
+void removeAllOddNumbers(std::list<NumberManipulator>& inputList) {
+    inputList.remove_if([](const NumberManipulator& nm) {
+        return nm.number % 2 != 0;
     });
 }
 
-template <typename T>
-void removeAllOddElements(std::list<T>& inputList) {
-    int index = 0;
-    inputList.remove_if([&index](int) {
-        return index++ % 2 != 0;
-    });
-}
+std::vector<NumberManipulator> buildCommonElements(
+    std::vector<NumberManipulator> inputVectorA,
+    std::vector<NumberManipulator> inputVectorB) {
 
-template <typename T>
-std::vector<T> vecFromUnionSet(const std::vector<T>& inputVecA, const std::vector<T>& inputVecB) {
-    std::vector<T> sortedA(inputVecA.begin(), inputVecA.end());
-    std::vector<T> sortedB(inputVecB.begin(), inputVecB.end());
+    auto compareByNumber = [](const NumberManipulator& a, const NumberManipulator& b) {
+        return a.number < b.number;
+    };
 
-    std::sort(sortedA.begin(), sortedA.end());
-    std::sort(sortedB.begin(), sortedB.end());
+    std::sort(inputVectorA.begin(), inputVectorA.end(), compareByNumber);
+    std::sort(inputVectorB.begin(), inputVectorB.end(), compareByNumber);
 
-    std::vector<T> result;
-    result.resize(sortedA.size() + sortedB.size());
+    std::vector<NumberManipulator> result;
 
-    auto it = std::set_union(
-        sortedA.begin(), sortedA.end(), 
-        sortedB.begin(), sortedB.end(), 
-        result.begin()
+    std::set_intersection(
+        inputVectorA.begin(), inputVectorA.end(),
+        inputVectorB.begin(), inputVectorB.end(),
+        std::back_inserter(result),
+        compareByNumber
     );
-    result.resize(std::distance(result.begin(), it));
+
     return result;
 }
 
-template <typename T>
-std::list<std::pair<T, T>> equalizeLists(const std::list<T>& inputListA, const std::list<T>& inputListB) {
-    std::list<T> longest = (inputListA.size() > inputListB.size()) ? inputListA : inputListB;
-    std::list<T> smallest = (inputListA.size() < inputListB.size()) ? inputListA : inputListB;
+std::list<std::pair<NumberManipulator, NumberManipulator>> equalizeLists(
+    std::list<NumberManipulator> inputListA,
+    std::list<NumberManipulator> inputListB) {
 
-    longest.insert(longest.end(), std::next(smallest.begin(), longest.size()), smallest.end());
-    std::list<std::pair<T, T>> mergedPairs;
-    auto itA = longest.begin();
-    auto itB = smallest.begin();
+    if (inputListA.size() > inputListB.size()) {
+        auto it = inputListA.begin();
+        std::advance(it, inputListA.size() - inputListB.size());
+        inputListA.erase(inputListA.begin(), it);
+    } else if (inputListB.size() > inputListA.size()) {
+        auto it = inputListB.begin();
+        std::advance(it, inputListB.size() - inputListA.size());
+        inputListB.erase(inputListB.begin(), it);
+    }
 
-    std::transform(itA, longest.end(), itB, std::back_inserter(mergedPairs),
-        [](const T& a, const T& b) {
+    std::list<std::pair<NumberManipulator, NumberManipulator>> mergedPairs;
+    std::transform(
+        inputListA.begin(), inputListA.end(), 
+        inputListB.begin(),
+        std::back_inserter(mergedPairs),
+        [](const NumberManipulator& a, const NumberManipulator& b) {
             return std::make_pair(a, b);
-        });
-
+        }
+    );
     return mergedPairs;
 }
 
-template <typename T>
-std::vector<T> equalizeVectors(const std::vector<T>& inputVectorA, const std::vector<T>& inputVectorB) {
+std::vector<std::pair<NumberManipulator, NumberManipulator>> equalizeVectors(const std::vector<NumberManipulator>& inputVectorA, const std::vector<NumberManipulator>& inputVectorB) {
     auto longest = (inputVectorA.size() > inputVectorB.size()) ? inputVectorA : inputVectorB;
     auto smallest = (inputVectorA.size() < inputVectorB.size()) ? inputVectorA : inputVectorB;
 
-    std::vector<std::pair<T, T>> mergedPairs;
+    std::vector<std::pair<NumberManipulator, NumberManipulator>> mergedPairs;
     auto itA = inputVectorA.begin();
     auto itB = inputVectorB.begin();
 
     auto minSize = std::min(inputVectorA.size(), inputVectorB.size());
     std::transform(itA, itA + minSize, itB, std::back_inserter(mergedPairs),
-        [](const T& a, const T& b) {
+        [](const NumberManipulator& a, const NumberManipulator& b) {
             return std::make_pair(a, b);
         });
 
     return mergedPairs;
 }
 
+
 template <typename T>
+void print(const T& container) {
+    for (const auto& obj : container) {
+        std::cout << obj.number << " ";
+    }
+    std::cout << std::endl;
+}
+
+template <typename T>
+void printPairs(const T& container) {
+    for (const auto& obj : container) {
+            std::cout << obj.first.number << " " << obj.second.number << "  ";
+        }
+    std::cout << std::endl;
+}
+
 void runPipeline(int vecSize) {
     auto initialVector = buildInitialVector(vecSize);
-    std::cout << "Initial vector:" << std::endl;
-    std::cout << initialVector << std::endl;
+    // print(initialVector);
 
-    auto sliceVector = buildSliceVector(initialVector, 10, 10);
-    std::cout << "Slice vector:" << std::endl;
-    std::cout << sliceVector << std::endl;
+    auto slicedVector = sliceInitialVector(initialVector);
+    // print(slicedVector);
 
-    auto listOfSlices = buildLargestList(sliceVector);
-    std::cout << "List of slices:" << std::endl;
-    std::cout << listOfSlices << std::endl;
+    auto largestList = buildLargestList(initialVector);
+    // print(largestList);
+ 
+    auto smallestList = buildSmallestList(slicedVector);
+    // print(smallestList);
 
-    auto listOfSmallestSlices = buildSmallesList(sliceVector);
-    std::cout << "List of smallest slices:" << std::endl;
-    std::cout << listOfSmallestSlices << std::endl;
+    // removeMovedElements(initialVector);
+    // print(initialVector);
 
-    removeMovedElements(initialVector);
-    std::cout << "Initial vector:" << std::endl;
-    std::cout << initialVector << std::endl;
+    // removeMovedElements(slicedVector);
+    // print(slicedVector);
 
-    removeMovedElements(sliceVector);
-    std::cout << "Slice vector:" << std::endl;
-    std::cout << sliceVector << std::endl;
+    auto avgIT = sortByAVGList(largestList);
+    int avg = avgIT->number;
+    // print(largestList);
+    // std::cout << avg << std::endl;
 
-    sortAverageElement(listOfSlices);
-    std::cout << "List of slices:" << std::endl;
-    std::cout << listOfSlices << std::endl;
+    removeAllOddNumbers(smallestList);
+    // print(smallestList);
 
-    removeAllOddElements(listOfSmallestSlices);
-    std::cout << "List of smallest slices:" << std::endl;
-    std::cout << listOfSmallestSlices << std::endl;
+    auto mergedVector = buildCommonElements(initialVector, slicedVector);
+    // print(mergedVector);
 
-    auto setVector = vecFromUnionSet(initialVector, sliceVector);
-    std::cout << "setVector:" << std::endl;
-    std::cout << setVector << std::endl;
+    auto equalizedLists = equalizeLists(largestList, smallestList);
+    // printPairs(equalizedLists);
 
-    auto mergedEqualizedList = equalizeLists(listOfSlices, listOfSmallestSlices);
-    std::cout << "mergedEqualizeList:" << std::endl;
-    std::cout << mergedEqualizedList << std::endl;
-
-    auto mergedEqualizedVector = equalizeVectors(initialVector, sliceVector);
-    std::cout << "mergedEqualizedVector:" << std::endl;
-    std::cout << mergedEqualizedVector << std::endl;
+    auto equalizedVectors = equalizeVectors(initialVector, slicedVector);
+    // printPairs(equalizedVectors);
 }
+
