@@ -1,0 +1,3 @@
+D:/code/sppo/cpp/Lab4/build/CMakeFiles/lab.dir
+D:/code/sppo/cpp/Lab4/build/CMakeFiles/ALL_BUILD.dir
+D:/code/sppo/cpp/Lab4/build/CMakeFiles/ZERO_CHECK.dir

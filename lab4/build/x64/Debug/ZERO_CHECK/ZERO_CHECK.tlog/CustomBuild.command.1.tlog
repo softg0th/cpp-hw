@@ -1,0 +1,10 @@
+^D:\CODE\SPPO\CPP\LAB4\BUILD\CMAKEFILES\E6306D8C52A6881CC5ECF1924D9386BF\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SD:/code/sppo/cpp/Lab4 -BD:/code/sppo/cpp/Lab4/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file D:/code/sppo/cpp/Lab4/build/lab.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
